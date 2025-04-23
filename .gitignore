@@ -92,3 +92,20 @@ dist/
 # ---- OS files ----
 .DS_Store
 Thumbs.db
+
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual Environment
+venv/
+
+# Docker
+*.dockerfile
+
+# Data files
+data/*.csv
+
+# Jupyter Notebooks
+.ipynb_checkpoints/

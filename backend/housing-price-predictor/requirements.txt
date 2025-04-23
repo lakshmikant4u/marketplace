@@ -1,0 +1,6 @@
+fastapi==0.95.0
+uvicorn==0.22.0
+pandas==2.2.2        # or 2.1.x
+scikit-learn==1.4.2  # Released with NumPy 2.x support
+joblib==1.4.2        # Latest stable
+numpy==2.2.3         # Latest, works with scikit-learn 1.4+
