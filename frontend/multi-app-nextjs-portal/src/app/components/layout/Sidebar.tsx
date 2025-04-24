@@ -6,7 +6,7 @@ import clsx from 'clsx';
 
 const navLinks = [
   { href: '/estimator', label: 'Estimator' },
-  { href: '/market', label: 'Market Analysis' },
+  { href: '/market-analysis', label: 'Market Analysis' },
 ];
 
 export function Sidebar() {

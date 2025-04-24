@@ -16,7 +16,7 @@ export default function Home() {
           Property Value Estimator
         </Link>
         <Link
-          href="/market"
+          href="/market-analysis"
           className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow transition"
         >
           Market Analysis Dashboard
