@@ -34,11 +34,13 @@ const PropertyValueEstimator = () => {
     }
 
     try {
-      const result: any = await mockPrediction(formData);
-      setPredictionResult(result.value);
+      // Generate a random property value prediction
+      const randomPrediction = Math.floor(Math.random() * (1000000 - 500000 + 1)) + 500000; // Random value between $500,000 and $1,000,000
+
+      setPredictionResult(randomPrediction);
 
       // Save to history
-      setHistory([{ ...formData, prediction: result.value }, ...history]);
+      setHistory([{ ...formData, prediction: randomPrediction }, ...history]);
 
     } catch (err) {
       setError('An error occurred while making the prediction');
@@ -130,6 +132,17 @@ const PropertyValueEstimator = () => {
       <Comparison history={history} />
     </div>
   );
+};
+
+// Simulated Prediction Function (Mock)
+const mockPrediction = (formData: any) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // Simulate a random prediction value (between $500,000 and $1,000,000)
+      const randomValue = Math.floor(Math.random() * (1000000 - 500000 + 1)) + 500000;
+      resolve({ value: randomValue });
+    }, 1000); // Simulate a delay of 1 second
+  });
 };
 
 export default PropertyValueEstimator;
