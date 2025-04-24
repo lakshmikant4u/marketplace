@@ -1,52 +1,42 @@
+'use client';
+
 import { useState } from 'react';
 
-interface Property {
-  bedrooms: number;
-  bathrooms: number;
-  area: number;
-  location: string;
-  prediction: number;
-}
+const Comparison = ({ history }: { history: any[] }) => {
+  const [selected, setSelected] = useState<any[]>([]);
 
-interface ComparisonProps {
-  history: Property[];
-}
-
-const Comparison = ({ history }: ComparisonProps) => {
-  const [selectedProperties, setSelectedProperties] = useState<Property[]>([]);
-
-  const handleSelectProperty = (property: Property) => {
-    if (selectedProperties.some((item) => item === property)) {
-      setSelectedProperties(selectedProperties.filter((item) => item !== property));
-    } else {
-      setSelectedProperties([...selectedProperties, property]);
-    }
+  const toggleSelect = (property: any) => {
+    setSelected((prev) =>
+      prev.includes(property)
+        ? prev.filter((item) => item !== property)
+        : [...prev, property]
+    );
   };
 
+  if (history.length === 0) return null;
+
   return (
-    <div className="space-y-4">
-      <h3 className="text-xl font-semibold">Compare Properties</h3>
-      <div className="grid grid-cols-3 gap-4">
-        {history.map((item, index) => (
+    <div className="mt-6">
+      <h3 className="text-xl font-semibold mb-2">Compare Properties</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {history.map((item, i) => (
           <div
-            key={index}
-            onClick={() => handleSelectProperty(item)}
-            className={`cursor-pointer p-4 border ${
-              selectedProperties.includes(item) ? 'bg-blue-100' : ''
-            }`}
+            key={i}
+            onClick={() => toggleSelect(item)}
+            className={`cursor-pointer p-4 border rounded ${selected.includes(item) ? 'bg-blue-100' : ''}`}
           >
-            <p>Bedrooms: {item.bedrooms}</p>
-            <p>Bathrooms: {item.bathrooms}</p>
-            <p>Area: {item.area}</p>
-            <p>Location: {item.location}</p>
-            <p>Value: ${item.prediction.toFixed(2)}</p>
+            <p><strong>Bedrooms:</strong> {item.bedrooms}</p>
+            <p><strong>Bathrooms:</strong> {item.bathrooms}</p>
+            <p><strong>Area:</strong> {item.area} sqft</p>
+            <p><strong>Location:</strong> {item.location}</p>
+            <p><strong>Value:</strong> ${item.prediction.toFixed(2)}</p>
           </div>
         ))}
       </div>
 
-      {selectedProperties.length > 1 && (
-        <div className="space-y-4">
-          <h4 className="font-semibold">Comparison</h4>
+      {selected.length > 1 && (
+        <div className="mt-6">
+          <h4 className="font-semibold mb-2">Side-by-Side Comparison</h4>
           <table className="table-auto w-full border">
             <thead>
               <tr>
@@ -54,17 +44,17 @@ const Comparison = ({ history }: ComparisonProps) => {
                 <th>Bathrooms</th>
                 <th>Area</th>
                 <th>Location</th>
-                <th>Estimated Value</th>
+                <th>Value</th>
               </tr>
             </thead>
             <tbody>
-              {selectedProperties.map((property, index) => (
-                <tr key={index}>
-                  <td>{property.bedrooms}</td>
-                  <td>{property.bathrooms}</td>
-                  <td>{property.area}</td>
-                  <td>{property.location}</td>
-                  <td>${property.prediction.toFixed(2)}</td>
+              {selected.map((item, i) => (
+                <tr key={i}>
+                  <td className="border px-2 py-1">{item.bedrooms}</td>
+                  <td className="border px-2 py-1">{item.bathrooms}</td>
+                  <td className="border px-2 py-1">{item.area}</td>
+                  <td className="border px-2 py-1">{item.location}</td>
+                  <td className="border px-2 py-1">${item.prediction.toFixed(2)}</td>
                 </tr>
               ))}
             </tbody>
