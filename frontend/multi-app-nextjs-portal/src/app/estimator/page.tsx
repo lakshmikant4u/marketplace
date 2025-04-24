@@ -1,20 +1,9 @@
-'use client'; // Add this line to mark this file as a Client Component
+'use client';
 
 import { useState } from 'react';
 import History from './components/History';
 import Comparison from './components/Comparison';
 import PredictionChart from './components/PredictionChart';
-
-// Mock API response
-const mockPrediction = (propertyDetails: any) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        value: 500000 + Math.random() * 100000, // Random value for mock prediction
-      });
-    }, 1000);
-  });
-};
 
 const PropertyValueEstimator = () => {
   const [formData, setFormData] = useState({
@@ -60,45 +49,61 @@ const PropertyValueEstimator = () => {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">Property Value Estimator</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label>Bedrooms</label>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        
+        {/* Bedrooms Input */}
+        <div className="flex items-center space-x-4">
+          <label htmlFor="bedrooms" className="text-lg font-medium w-1/4">Bedrooms</label>
           <input
             type="number"
+            id="bedrooms"
             name="bedrooms"
             value={formData.bedrooms}
             onChange={handleChange}
-            className="input"
+            className="w-3/4 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter number of bedrooms"
           />
         </div>
-        <div>
-          <label>Bathrooms</label>
+
+        {/* Bathrooms Input */}
+        <div className="flex items-center space-x-4">
+          <label htmlFor="bathrooms" className="text-lg font-medium w-1/4">Bathrooms</label>
           <input
             type="number"
+            id="bathrooms"
             name="bathrooms"
             value={formData.bathrooms}
             onChange={handleChange}
-            className="input"
+            className="w-3/4 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter number of bathrooms"
           />
         </div>
-        <div>
-          <label>Area (in sqft)</label>
+
+        {/* Area Input */}
+        <div className="flex items-center space-x-4">
+          <label htmlFor="area" className="text-lg font-medium w-1/4">Area (in sqft)</label>
           <input
             type="number"
+            id="area"
             name="area"
             value={formData.area}
             onChange={handleChange}
-            className="input"
+            className="w-3/4 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter area in square feet"
           />
         </div>
-        <div>
-          <label>Location</label>
+
+        {/* Location Input */}
+        <div className="flex items-center space-x-4">
+          <label htmlFor="location" className="text-lg font-medium w-1/4">Location</label>
           <input
             type="text"
+            id="location"
             name="location"
             value={formData.location}
             onChange={handleChange}
-            className="input"
+            className="w-3/4 p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter property location"
           />
         </div>
 
